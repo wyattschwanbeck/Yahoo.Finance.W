@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aLqrg5wvpNqTVDyPg7l97fnhSuTYsOiGupmcC5YB/VVOYz2osvniT1u7ECwNXODcRc2gkpABepWT5Du2+ceHSQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\TaHan\\Documents\\GitHub\\Yahoo.Finance\\Yahoo.Finance.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TaHan\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\TaHan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
