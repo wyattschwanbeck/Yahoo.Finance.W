@@ -1,1 +1,0 @@
-v1 - May 4, 2020. I brought this over from my TimHanewichNetStandardToolkit class library.  Did some shifting too, separated it all into multiple files.

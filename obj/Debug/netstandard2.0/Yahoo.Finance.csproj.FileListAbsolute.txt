@@ -6,3 +6,12 @@ C:\Users\TaHan\Documents\GitHub\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Fin
 C:\Users\TaHan\Documents\GitHub\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.AssemblyInfo.cs
 C:\Users\TaHan\Documents\GitHub\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.dll
 C:\Users\TaHan\Documents\GitHub\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.pdb
+C:\Users\TaHan\Downloads\Yahoo.Finance\bin\Debug\netstandard2.0\Yahoo.Finance.deps.json
+C:\Users\TaHan\Downloads\Yahoo.Finance\bin\Debug\netstandard2.0\Yahoo.Finance.dll
+C:\Users\TaHan\Downloads\Yahoo.Finance\bin\Debug\netstandard2.0\Yahoo.Finance.pdb
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.csprojAssemblyReference.cache
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.csproj.CoreCompileInputs.cache
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.AssemblyInfoInputs.cache
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.AssemblyInfo.cs
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.dll
+C:\Users\TaHan\Downloads\Yahoo.Finance\obj\Debug\netstandard2.0\Yahoo.Finance.pdb

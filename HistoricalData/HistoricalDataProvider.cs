@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Collections.Generic;
+using TimHanewichToolkit;
 
 
 namespace Yahoo.Finance

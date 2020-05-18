@@ -25,6 +25,15 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "TimHanewichToolkit/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/TimHanewichToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TimHanewichToolkit.dll": {}
+        }
       }
     }
   },
@@ -172,24 +181,38 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "TimHanewichToolkit/1.0.0": {
+      "sha512": "eruT9FcyrIlmaUJjft+byVSdUBf4VSCDAsGFKLehf1fmSeBoIrQsPJjA9bCA/P7RtFEQgSlUNzqempfCCilw4Q==",
+      "type": "package",
+      "path": "timhanewichtoolkit/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ToolIcon.jpg",
+        "lib/netstandard2.0/TimHanewichToolkit.dll",
+        "timhanewichtoolkit.1.0.0.nupkg.sha512",
+        "timhanewichtoolkit.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "NETStandard.Library >= 2.0.3"
+      "NETStandard.Library >= 2.0.3",
+      "TimHanewichToolkit >= 1.0.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\TaHan\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TaHan\\Documents\\GitHub\\Yahoo.Finance\\Yahoo.Finance.csproj",
+      "projectUniqueName": "C:\\Users\\TaHan\\Downloads\\Yahoo.Finance\\Yahoo.Finance.csproj",
       "projectName": "Yahoo.Finance",
-      "projectPath": "C:\\Users\\TaHan\\Documents\\GitHub\\Yahoo.Finance\\Yahoo.Finance.csproj",
+      "projectPath": "C:\\Users\\TaHan\\Downloads\\Yahoo.Finance\\Yahoo.Finance.csproj",
       "packagesPath": "C:\\Users\\TaHan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TaHan\\Documents\\GitHub\\Yahoo.Finance\\obj\\",
+      "outputPath": "C:\\Users\\TaHan\\Downloads\\Yahoo.Finance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\TaHan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -221,6 +244,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "TimHanewichToolkit": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "imports": [
