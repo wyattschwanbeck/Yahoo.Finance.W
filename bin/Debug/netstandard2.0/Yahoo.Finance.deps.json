@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Yahoo.Finance/2": {
+      "Yahoo.Finance/3": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "TimHanewichToolkit": "1.0.0"
@@ -33,7 +33,7 @@
     }
   },
   "libraries": {
-    "Yahoo.Finance/2": {
+    "Yahoo.Finance/3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

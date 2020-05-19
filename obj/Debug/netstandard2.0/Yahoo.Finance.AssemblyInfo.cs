@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Library for accessing financial data from yahoo finance.  Currently supports equi" +
     "ty summary data, historical stock data, and an earnings calendar.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Yahoo.Finance")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Yahoo.Finance")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.0.0.0")]
