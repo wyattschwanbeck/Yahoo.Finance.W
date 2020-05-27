@@ -89,6 +89,8 @@ namespace Yahoo.Finance
                     loc1 = cols[2].IndexOf(">", loc1 + 1);
                     loc2 = cols[2].IndexOf("<", loc1 + 1);
                     esd.Name = cols[2].Substring(loc1 + 1, loc2 - loc1 - 1);
+                    esd.Name = esd.Name.Replace("&#x27;", "'");
+                    esd.Name = esd.Name.Replace("&amp;","&");
                 }
                 catch
                 {
