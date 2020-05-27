@@ -68,6 +68,27 @@ namespace Yahoo.Finance
                 loc2 = cols[2].IndexOf("<", loc1 + 1);
                 esd.Name = cols[2].Substring(loc1 + 1, loc2 - loc1 - 1);
 
+                //Get price
+                loc1 = cols[3].IndexOf("span class");
+                loc1 = cols[3].IndexOf(">", loc1 + 1);
+                loc2 = cols[3].IndexOf("<", loc1 + 1);
+                esd.Price = Convert.ToSingle(cols[3].Substring(loc1 + 1, loc2 - loc1 - 1));
+
+                //Get dollar change
+                loc1 = cols[4].IndexOf("span class");
+                loc1 = cols[4].IndexOf(">", loc1 + 1);
+                loc2 = cols[4].IndexOf("<", loc1 + 1);
+                esd.DollarChange = Convert.ToSingle(cols[4].Substring(loc1 + 1, loc2 - loc1 - 1).Replace("+", ""));
+                
+                //Get Percent Change
+                loc1 = cols[5].IndexOf("span class");
+                loc1 = cols[5].IndexOf(">", loc1 + 1);
+                loc2 = cols[5].IndexOf("<", loc1 + 1);
+                string PercentChange = cols[5].Substring(loc1 + 1, loc2 - loc1 - 1).Replace("+", "").Replace("%", "");
+                float percent_change_perc = Convert.ToSingle(PercentChange);
+                percent_change_perc = percent_change_perc / 100;
+                esd.PercentChange = percent_change_perc;
+
                 ToReturn.Add(esd);
             }
 
