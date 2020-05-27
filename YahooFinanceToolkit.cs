@@ -26,6 +26,10 @@ namespace Yahoo.Finance
             {
                 ToReturn = System.Convert.ToDouble(mcf * 1000000000000);
             }
+            else //if it is none of these, it is just a number without the symbol at the end, so return it
+            {
+                return System.Convert.ToDouble(representation);
+            }
 
             return ToReturn;
         }
