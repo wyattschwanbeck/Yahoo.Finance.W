@@ -5,6 +5,9 @@ namespace Yahoo.Finance
     public enum EquityScreen
     {
         Gainers,
-        Losers
+        Losers,
+        MostActives,
+        Trending,
+        TopEtfs
     }
 }
