@@ -165,7 +165,7 @@ namespace Yahoo.Finance
             year_range_info = year_range_info.Replace(" ", "");
             splitter.Clear();
             splitter.Add("-");
-            string[] parts4 = day_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
+            string[] parts4 = year_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
             Summary.YearRangeLow = System.Convert.ToSingle(parts4[0].Trim());
             Summary.YearRangeHigh = System.Convert.ToSingle(parts4[1].Trim());
 
