@@ -50,6 +50,9 @@ namespace Yahoo.Finance
             //Get data collected time
             Summary.DataCollectedOn = DateTimeOffset.Now;
 
+            //The name and price were left outside of a try bracket intentionally.
+            //This should be the minimum amount of information that can be accessed.  If you can't get this, fail.
+
             //Get name and stock symbol
             string name_and_stock_symbol = GetDataByClassName(web, "D(ib) Fz(18px)");
             loc1 = name_and_stock_symbol.IndexOf("(");
@@ -58,6 +61,7 @@ namespace Yahoo.Finance
             Summary.Name = Summary.Name.Replace("&#x27;", "'");
             loc2 = name_and_stock_symbol.IndexOf(")", loc1 + 1);
             Summary.StockSymbol = name_and_stock_symbol.Substring(loc1 + 1, loc2 - loc1 - 1);
+            
 
             
 
@@ -66,23 +70,46 @@ namespace Yahoo.Finance
             Summary.Price = System.Convert.ToSingle(GetDataByClassName(web, "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"));
 
             
-
             //Get day change
-            loc1 = web.IndexOf("Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px)");
-            loc1 = web.IndexOf(">", loc1 + 1);
-            loc2 = web.IndexOf("<", loc1 + 1);
-            string dayc = web.Substring(loc1 + 1, loc2 - loc1 - 1);
-            splitter.Clear();
-            splitter.Add(" ");
-            string[] partsdc = dayc.Split(splitter.ToArray(), StringSplitOptions.None);
-            Summary.DollarChange = System.Convert.ToSingle(partsdc[0].Replace("+", ""));
-            Summary.PercentChange = System.Convert.ToSingle(partsdc[1].Replace("+", "").Replace("(","").Replace(")", "").Replace("%","").Trim())/100;
-
+            try
+            {
+                loc1 = web.IndexOf("Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px)");
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string dayc = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                splitter.Clear();
+                splitter.Add(" ");
+                string[] partsdc = dayc.Split(splitter.ToArray(), StringSplitOptions.None);
+                Summary.DollarChange = System.Convert.ToSingle(partsdc[0].Replace("+", ""));
+                Summary.PercentChange = System.Convert.ToSingle(partsdc[1].Replace("+", "").Replace("(","").Replace(")", "").Replace("%","").Trim())/100;
+            }
+            catch
+            {
+                Summary.DollarChange = 0;
+                Summary.PercentChange = 0;
+            }
+            
             //Get previous close
-            Summary.PreviousClose = System.Convert.ToSingle(GetDataByDataTestName(web, "PREV_CLOSE-value"));
+            try
+            {
+                Summary.PreviousClose = System.Convert.ToSingle(GetDataByDataTestName(web, "PREV_CLOSE-value"));
+            }
+            catch
+            {
+                Summary.PreviousClose = 0;
+            }
+            
             
             //Get open
-            Summary.Open = System.Convert.ToSingle(GetDataByDataTestName(web, "OPEN-value"));
+            try
+            {
+                Summary.Open = System.Convert.ToSingle(GetDataByDataTestName(web, "OPEN-value"));
+            }
+            catch
+            {
+                Summary.Open = 0;
+            }
+            
 
             
 
@@ -146,33 +173,59 @@ namespace Yahoo.Finance
             
 
             //Get Day Range information
-            loc1 = web.IndexOf("DAYS_RANGE-value");
-            loc1 = web.IndexOf(">", loc1 + 1);
-            loc2 = web.IndexOf("<", loc1 + 1);
-            string day_range_info = web.Substring(loc1 + 1, loc2 - loc1 - 1);
-            day_range_info = day_range_info.Replace(" ", "");
-            splitter.Clear();
-            splitter.Add("-");
-            string[] parts3 = day_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
-            Summary.DayRangeLow = System.Convert.ToSingle(parts3[0].Trim());
-            Summary.DayRangeHigh = System.Convert.ToSingle(parts3[1].Trim());
+            try
+            {
+                loc1 = web.IndexOf("DAYS_RANGE-value");
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string day_range_info = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                day_range_info = day_range_info.Replace(" ", "");
+                splitter.Clear();
+                splitter.Add("-");
+                string[] parts3 = day_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
+                Summary.DayRangeLow = System.Convert.ToSingle(parts3[0].Trim());
+                Summary.DayRangeHigh = System.Convert.ToSingle(parts3[1].Trim());
+            }
+            catch
+            {
+                Summary.DayRangeLow = 0;
+                Summary.DayRangeHigh = 0;
+            }
+            
 
             //Get Day Range information
-            loc1 = web.IndexOf("FIFTY_TWO_WK_RANGE-value");
-            loc1 = web.IndexOf(">", loc1 + 1);
-            loc2 = web.IndexOf("<", loc1 + 1);
-            string year_range_info = web.Substring(loc1 + 1, loc2 - loc1 - 1);
-            year_range_info = year_range_info.Replace(" ", "");
-            splitter.Clear();
-            splitter.Add("-");
-            string[] parts4 = year_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
-            Summary.YearRangeLow = System.Convert.ToSingle(parts4[0].Trim());
-            Summary.YearRangeHigh = System.Convert.ToSingle(parts4[1].Trim());
+            try
+            {
+                loc1 = web.IndexOf("FIFTY_TWO_WK_RANGE-value");
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string year_range_info = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                year_range_info = year_range_info.Replace(" ", "");
+                splitter.Clear();
+                splitter.Add("-");
+                string[] parts4 = year_range_info.Split(splitter.ToArray(), StringSplitOptions.None);
+                Summary.YearRangeLow = System.Convert.ToSingle(parts4[0].Trim());
+                Summary.YearRangeHigh = System.Convert.ToSingle(parts4[1].Trim());
+            }
+            catch
+            {
+                Summary.YearRangeLow = 0;
+                Summary.YearRangeHigh = 0;
+            }
+            
 
             
 
             //Get volume
-            Summary.Volume = System.Convert.ToInt32(GetDataByDataTestName(web, "TD_VOLUME-value").Replace(",",""));
+            try
+            {
+                Summary.Volume = System.Convert.ToInt32(GetDataByDataTestName(web, "TD_VOLUME-value").Replace(",",""));
+            }
+            catch
+            {
+                Summary.Volume = 0;
+            }
+            
 
             //Get average volume
             try
