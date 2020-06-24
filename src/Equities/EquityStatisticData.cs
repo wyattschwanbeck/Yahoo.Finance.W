@@ -1,4 +1,7 @@
 using System;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
 
 namespace Yahoo.Finance
 {
@@ -72,6 +75,37 @@ namespace Yahoo.Finance
         public DateTime? ExDividendDate {get; set;}
         public string LastSplitFactor {get; set;}
         public DateTime? LastSplitDate {get; set;}
+
+
+        public async static Task<EquityStatisticData> CreateAsync(string symbol)
+        {
+            EquityStatisticData ToReturn = new EquityStatisticData();
+            
+            string url = "https://finance.yahoo.com/quote/" + symbol.Trim().ToLower() + "/key-statistics";
+            HttpClient hc = new HttpClient();
+            HttpResponseMessage hrm = await hc.GetAsync(url);
+            string web = await hrm.Content.ReadAsStringAsync();
+
+            //Fiscal year ends
+            ToReturn.FiscalYearEnds = DateTime.Parse(ToReturn.GetValueByClassName(web, "Fw(500) Ta(end) Pstart(10px) Miw(60px)"));
+
+
+            return ToReturn;
+        }
+
+        private string GetValueByClassName(string web, string class_name)
+        {
+            int loc1 = web.IndexOf(class_name);
+            if (loc1 == -1)
+            {
+                throw new Exception("Unable to find '" + class_name + "' in supplied source.");
+            }
+            loc1 = web.IndexOf(">", loc1 + 1);
+            int loc2 = web.IndexOf("<", loc1 + 1);
+            string data = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+            return data;
+        }
+
 
     }
 }
