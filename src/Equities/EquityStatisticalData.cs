@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Yahoo.Finance
 {
-    public class EquityStatisticData : EquityData
+    public class EquityStatisticalData : EquityData
     {
         
         //Fiscal Year
@@ -77,9 +77,9 @@ namespace Yahoo.Finance
         public DateTime? LastSplitDate {get; set;}
 
 
-        public async static Task<EquityStatisticData> CreateAsync(string symbol)
+        public async static Task<EquityStatisticalData> CreateAsync(string symbol)
         {
-            EquityStatisticData ToReturn = new EquityStatisticData();
+            EquityStatisticalData ToReturn = new EquityStatisticalData();
             
             //https://finance.yahoo.com/quote/GOOGL/key-statistics?p=GOOGL
             string url = "https://finance.yahoo.com/quote/" + symbol.Trim().ToLower() + "/key-statistics?p=" + symbol.Trim().ToLower();

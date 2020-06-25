@@ -30,7 +30,7 @@ namespace FunctionalTesting
                 string s = Console.ReadLine();
                 try
                 {
-                    EquityStatisticData esd = EquityStatisticData.CreateAsync(s).Result;
+                    EquityStatisticalData esd = EquityStatisticalData.CreateAsync(s).Result;
                     string json = JsonConvert.SerializeObject(esd);
                     Console.WriteLine(json);
                 }
@@ -54,7 +54,7 @@ namespace FunctionalTesting
                 t = t + 1;
                 try
                 {
-                    EquityStatisticData esd = EquityStatisticData.CreateAsync(s).Result;
+                    EquityStatisticalData esd = EquityStatisticalData.CreateAsync(s).Result;
                     float pdone = (float)t / (float)sp500.Length;
                     Console.WriteLine("success... " + pdone.ToString("#0.0%"));
                 }
