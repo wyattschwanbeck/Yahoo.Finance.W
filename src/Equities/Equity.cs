@@ -10,6 +10,7 @@ namespace Yahoo.Finance
     {
         public string StockSymbol { get; set; }
         public EquitySummaryData Summary { get; set; }
+        public EquityStatisticalData Statistics {get; set;}
 
         public static Equity Create(string stock_symbol)
         {
@@ -362,6 +363,23 @@ namespace Yahoo.Finance
             
 
         }
+
+        public async Task DownloadStatisticsAsync()
+        {
+            if (StockSymbol == "")
+            {
+                throw new Exception("Stock symbol not provided.");
+            }
+            try
+            {
+                Statistics = await EquityStatisticalData.CreateAsync(StockSymbol);
+            }
+            catch
+            {
+                throw new Exception("Fatal error while downloading statistic data.");
+            }
+        }
+
 
         private string GetDataByClassName(string web_data, string class_name)
         {
