@@ -12,9 +12,10 @@ namespace FunctionalTesting
     {
         static void Main(string[] args)
         {
-            EquitySummaryData esd = EquitySummaryData.CreateAsync("V").Result;
-            Console.WriteLine(JsonConvert.SerializeObject(esd)); 
-            
+            Equity e = Equity.Create("V");
+            e.DownloadSummaryAsync().Wait();
+            e.DownloadStatisticsAsync().Wait();
+            Console.WriteLine(JsonConvert.SerializeObject(e));
         }
 
         static void TestOne()
