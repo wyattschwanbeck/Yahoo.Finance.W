@@ -12,13 +12,13 @@ namespace FunctionalTesting
     {
         static void Main(string[] args)
         {
-            //TestOne();
+            TestOne();
             
-            string path = "C:\\Users\\tihanewi\\Downloads\\Failure BRKB.html";
-            HttpClient hc = new HttpClient();
-            HttpResponseMessage hrm = hc.GetAsync("https://finance.yahoo.com/quote/brk.b/key-statistics?p=brk.b").Result;
-            string web = hrm.Content.ReadAsStringAsync().Result;
-            System.IO.File.WriteAllText(path, web);
+            // string path = "C:\\Users\\tihanewi\\Downloads\\Failure BRKB.html";
+            // HttpClient hc = new HttpClient();
+            // HttpResponseMessage hrm = hc.GetAsync("https://finance.yahoo.com/quote/brk.b/key-statistics?p=brk.b").Result;
+            // string web = hrm.Content.ReadAsStringAsync().Result;
+            // System.IO.File.WriteAllText(path, web);
             
         }
 
