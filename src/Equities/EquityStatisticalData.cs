@@ -80,6 +80,7 @@ namespace Yahoo.Finance
         public async static Task<EquityStatisticalData> CreateAsync(string symbol)
         {
             EquityStatisticalData ToReturn = new EquityStatisticalData();
+            ToReturn.QueriedSymbol = symbol.Trim().ToUpper();
             
             //https://finance.yahoo.com/quote/GOOGL/key-statistics?p=GOOGL
             string url = "https://finance.yahoo.com/quote/" + symbol.Trim().ToLower() + "/key-statistics?p=" + symbol.Trim().ToLower();

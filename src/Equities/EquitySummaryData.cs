@@ -39,6 +39,7 @@ namespace Yahoo.Finance
         public static async Task<EquitySummaryData> CreateAsync(string symbol)
         {
             EquitySummaryData ToReturn = new EquitySummaryData();
+            ToReturn.QueriedSymbol = symbol.ToUpper().Trim();
 
             //Get from yahoo finance
             string url = "https://finance.yahoo.com/quote/" + symbol;
