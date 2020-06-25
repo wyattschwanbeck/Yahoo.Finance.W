@@ -12,9 +12,8 @@ namespace FunctionalTesting
     {
         static void Main(string[] args)
         {
-            Equity e = Equity.Create("MSFT");
-            e.DownloadStatisticsAsync().Wait();
-            Console.WriteLine(JsonConvert.SerializeObject(e));
+            EquitySummaryData esd = EquitySummaryData.CreateAsync("V").Result;
+            Console.WriteLine(JsonConvert.SerializeObject(esd)); 
             
         }
 
