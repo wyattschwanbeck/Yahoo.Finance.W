@@ -8,27 +8,27 @@ namespace Yahoo.Finance
 {
     public class Equity
     {
-        public string StockSymbol { get; set; }
+        public string Symbol { get; set; }
         public EquitySummaryData Summary { get; set; }
         public EquityStatisticalData Statistics {get; set;}
 
         public static Equity Create(string stock_symbol)
         {
             Equity e = new Equity();
-            e.StockSymbol = stock_symbol;
+            e.Symbol = stock_symbol;
             return e;
         }
 
         public async Task DownloadSummaryAsync()
         {
-            if (StockSymbol == "")
+            if (Symbol == "")
             {
                 throw new Exception("Stock symbol not provided.");
             }
 
             try
             {
-                Summary = await EquitySummaryData.CreateAsync(StockSymbol);
+                Summary = await EquitySummaryData.CreateAsync(Symbol);
             }
             catch
             {
@@ -39,13 +39,13 @@ namespace Yahoo.Finance
 
         public async Task DownloadStatisticsAsync()
         {
-            if (StockSymbol == "")
+            if (Symbol == "")
             {
                 throw new Exception("Stock symbol not provided.");
             }
             try
             {
-                Statistics = await EquityStatisticalData.CreateAsync(StockSymbol);
+                Statistics = await EquityStatisticalData.CreateAsync(Symbol);
             }
             catch
             {
