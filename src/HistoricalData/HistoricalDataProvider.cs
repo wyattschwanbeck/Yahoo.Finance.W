@@ -17,51 +17,35 @@ namespace Yahoo.Finance
                     DateTime RequestStart = DateTime.Now;
                     string rawdata = "";
 
-                    do
+                    //Get the crumb!
+                    HttpClient hc = new HttpClient();
+                    HttpResponseMessage rm = await hc.GetAsync("https://finance.yahoo.com/quote/" + StockSymbol);
+                    string web = await rm.Content.ReadAsStringAsync();
+                    int loc1 = web.IndexOf("}}}}},\"CrumbStore\":{\"crumb\":");
+                    if (loc1 == -1)
                     {
-                        //Get the crumb!
-                        HttpClient hc = new HttpClient();
-                        HttpResponseMessage rm = await hc.GetAsync("https://finance.yahoo.com/quote/" + StockSymbol);
-                        string web = await rm.Content.ReadAsStringAsync();
-                        int loc1 = web.IndexOf("}}}}},\"CrumbStore\":{\"crumb\":");
-                        if (loc1 == -1)
-                        {
-                            throw new Exception("Unable to verify stock '" + StockSymbol + "'.");
-                        }
-                        loc1 = web.IndexOf("crumb", loc1 + 1);
-                        loc1 = web.IndexOf(":", loc1 + 1);
-                        loc1 = web.IndexOf("\"", loc1 + 1);
-                        int loc2 = web.IndexOf("\"", loc1 + 1);
-                        string crumb = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                        throw new Exception("Unable to verify stock '" + StockSymbol + "'.");
+                    }
+                    loc1 = web.IndexOf("crumb", loc1 + 1);
+                    loc1 = web.IndexOf(":", loc1 + 1);
+                    loc1 = web.IndexOf("\"", loc1 + 1);
+                    int loc2 = web.IndexOf("\"", loc1 + 1);
+                    string crumb = web.Substring(loc1 + 1, loc2 - loc1 - 1);
 
-                        //Get the unix times
-                        string Unix1 = UnixToolkit.GetUnixTime(PeriodStart).ToString();
-                        string Unix2 = UnixToolkit.GetUnixTime(PeriodEnd).ToString();
+                    //Get the unix times
+                    string Unix1 = UnixToolkit.GetUnixTime(PeriodStart).ToString();
+                    string Unix2 = UnixToolkit.GetUnixTime(PeriodEnd).ToString();
 
 
 
-                        //Get the info
-                        string urlfordata = "https://query1.finance.yahoo.com/v7/finance/download/" + StockSymbol + "?period1=" + Unix1 + "&period2=" + Unix2 + "&interval=1d&events=history&crumb=" + crumb;
-                        HttpResponseMessage fr = await hc.GetAsync(urlfordata);
-                        string resptext = await fr.Content.ReadAsStringAsync();
-                        if (resptext.Contains("Invalid cookie") == false)
-                        {
-                            rawdata = resptext;
-                        }
-
-                        //Check if we are over the time out time.
-                        TimeSpan ts = DateTime.Now - RequestStart;
-                        if (ts.TotalSeconds > 8)
-                        {
-                            throw new Exception("Historical data request timed out.");
-                        }
-
-                    } while (rawdata == "");
-
-
-
-
-
+                    //Get the info
+                    string urlfordata = "https://query1.finance.yahoo.com/v7/finance/download/" + StockSymbol + "?period1=" + Unix1 + "&period2=" + Unix2 + "&interval=1d&events=history&crumb=" + crumb;
+                    HttpResponseMessage fr = await hc.GetAsync(urlfordata);
+                    string resptext = await fr.Content.ReadAsStringAsync();
+                    if (resptext.Contains("Invalid cookie") == false)
+                    {
+                        rawdata = resptext;
+                    }
 
                     //Parse into data records
                     List<HistoricalDataRecord> datarecs = new List<HistoricalDataRecord>();
