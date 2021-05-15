@@ -29,7 +29,7 @@ namespace Yahoo.Finance
 
                     //Get the data
                     int HaveTriedCount = 0;
-                    while (DownloadResult != HistoricalDataDownloadResult.Successful && HaveTriedCount < try_count)
+                    while (DownloadResult != HistoricalDataDownloadResult.Successful && HaveTriedCount < try_count && DownloadResult != HistoricalDataDownloadResult.DataDoesNotExist)
                     {
                         await TryGetHistoricalDatAsync(StockSymbol, PeriodStart, PeriodEnd);
                     }
