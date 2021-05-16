@@ -29,7 +29,7 @@ namespace Yahoo.Finance
 
                     //Get the data
                     int HaveTriedCount = 0;
-                    while (DownloadResult != HistoricalDataDownloadResult.Successful && HaveTriedCount < try_count && DownloadResult != HistoricalDataDownloadResult.DataDoesNotExist)
+                    while (DownloadResult != HistoricalDataDownloadResult.Successful && HaveTriedCount < try_count && DownloadResult != HistoricalDataDownloadResult.DataDoesNotExistForSpecifiedTimePeriod)
                     {
                         await TryGetHistoricalDatAsync(StockSymbol, PeriodStart, PeriodEnd);
                         HaveTriedCount = HaveTriedCount + 1;
@@ -72,7 +72,7 @@ namespace Yahoo.Finance
                         //A bad request would be shown if for example the data does not exist for this stock for those dates.
                         if (fr.StatusCode == System.Net.HttpStatusCode.BadRequest) //We requested data that doesnt exist. For example, getting BYND (beyond meat) data for 2015: 400 Bad Request: Data doesn't exist for startDate = 1431746344, endDate = 1437016744
                         {
-                            DownloadResult = HistoricalDataDownloadResult.DataDoesNotExist;
+                            DownloadResult = HistoricalDataDownloadResult.DataDoesNotExistForSpecifiedTimePeriod;
                         }
                         else if (fr.StatusCode == System.Net.HttpStatusCode.Unauthorized) //Probably an 'Invalid cookie' message, unauthorized. So mark it as not authroized
                         {

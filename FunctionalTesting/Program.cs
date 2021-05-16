@@ -22,7 +22,7 @@ namespace FunctionalTesting
                 {
                     Console.WriteLine(hdp.HistoricalData.Length.ToString());
                 }
-                else if (hdp.DownloadResult == HistoricalDataDownloadResult.DataDoesNotExist)
+                else if (hdp.DownloadResult == HistoricalDataDownloadResult.DataDoesNotExistForSpecifiedTimePeriod)
                 {
                     Console.WriteLine("Data did not exist at the time!");
                 }
