@@ -12,10 +12,29 @@ namespace FunctionalTesting
     {
         static void Main(string[] args)
         {
-            Equity e = Equity.Create("V");
-            e.DownloadSummaryAsync().Wait();
-            e.DownloadStatisticsAsync().Wait();
-            Console.WriteLine(JsonConvert.SerializeObject(e));
+            string[] stocks = InvestingToolkit.GetEquityGroupAsync(EquityGroup.SP500).Result;
+            foreach (string s in stocks)
+            {
+                HistoricalDataProvider hdp = new HistoricalDataProvider();
+                Console.Write("Working on " + s + "... ");
+                hdp.DownloadHistoricalDataAsync(s, new DateTime(2010, 1, 1), new DateTime(2011, 1, 1)).Wait();
+                if (hdp.DownloadResult == HistoricalDataDownloadResult.Successful)
+                {
+                    Console.WriteLine(hdp.HistoricalData.Length.ToString());
+                }
+                else if (hdp.DownloadResult == HistoricalDataDownloadResult.DataDoesNotExist)
+                {
+                    Console.WriteLine("Data did not exist at the time!");
+                }
+                else if (hdp.DownloadResult == HistoricalDataDownloadResult.Unauthorized)
+                {
+                    Console.WriteLine("Unauthorized!!!!!");
+                }
+                else
+                {
+                    Console.WriteLine("Idk... " + hdp.DownloadResult.ToString());
+                }
+            }
         }
 
         static void TestOne()

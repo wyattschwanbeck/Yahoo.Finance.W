@@ -77,6 +77,10 @@ namespace Yahoo.Finance
                         {
                             DownloadResult = HistoricalDataDownloadResult.Unauthorized;
                         }
+                        else if (fr.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        {
+                            DownloadResult = HistoricalDataDownloadResult.NoDataFound;
+                        }
                         else
                         {
                             DownloadResult = HistoricalDataDownloadResult.OtherFailure;
