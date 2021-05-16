@@ -30,6 +30,10 @@ namespace FunctionalTesting
                 {
                     Console.WriteLine("Unauthorized!!!!!");
                 }
+                else if (hdp.DownloadResult == HistoricalDataDownloadResult.NoDataFound)
+                {
+                    Console.WriteLine("Stock symbol not found.");
+                }
                 else
                 {
                     Console.WriteLine("Idk... " + hdp.DownloadResult.ToString());
