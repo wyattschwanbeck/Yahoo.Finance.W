@@ -32,6 +32,7 @@ namespace Yahoo.Finance
                     while (DownloadResult != HistoricalDataDownloadResult.Successful && HaveTriedCount < try_count && DownloadResult != HistoricalDataDownloadResult.DataDoesNotExist)
                     {
                         await TryGetHistoricalDatAsync(StockSymbol, PeriodStart, PeriodEnd);
+                        HaveTriedCount = HaveTriedCount + 1;
                     }
                 }
 
