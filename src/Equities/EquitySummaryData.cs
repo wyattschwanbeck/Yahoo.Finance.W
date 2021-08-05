@@ -23,8 +23,8 @@ namespace Yahoo.Finance
         public float DayRangeHigh { get; set; }
         public float YearRangeLow { get; set; }
         public float YearRangeHigh { get; set; }
-        public int Volume { get; set; }
-        public int AverageVolume { get; set; }
+        public long Volume { get; set; }
+        public long AverageVolume { get; set; }
         public double MarketCap { get; set; }
         public float? Beta { get; set; }
         public float? PriceEarningsRatio { get; set; }
@@ -228,7 +228,7 @@ namespace Yahoo.Finance
             //Get volume
             try
             {
-                ToReturn.Volume = System.Convert.ToInt32(ToReturn.GetDataByDataTestName(web, "TD_VOLUME-value").Replace(",",""));
+                ToReturn.Volume = System.Convert.ToInt64(ToReturn.GetDataByDataTestName(web, "TD_VOLUME-value").Replace(",",""));
             }
             catch
             {
@@ -239,7 +239,7 @@ namespace Yahoo.Finance
             //Get average volume
             try
             {
-                ToReturn.AverageVolume = System.Convert.ToInt32(ToReturn.GetDataByDataTestName(web, "AVERAGE_VOLUME_3MONTH-value").Replace(",", ""));
+                ToReturn.AverageVolume = System.Convert.ToInt64(ToReturn.GetDataByDataTestName(web, "AVERAGE_VOLUME_3MONTH-value").Replace(",", ""));
 
             }
             catch
