@@ -42,7 +42,7 @@ namespace Yahoo.Finance
 
 
                 //Get symbol
-                loc1 = cols[1].IndexOf("a href");
+                loc1 = cols[1].IndexOf("href");
                 loc1 = cols[1].IndexOf(">", loc1 + 1);
                 loc2 = cols[1].IndexOf("<", loc1 + 1);
                 ToReturn.Add(cols[1].Substring(loc1 + 1, loc2 - loc1 - 1));
