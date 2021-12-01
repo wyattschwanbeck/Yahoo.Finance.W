@@ -76,7 +76,7 @@ namespace Yahoo.Finance
 
 
             //Get price
-            ToReturn.Price = System.Convert.ToSingle(ToReturn.GetDataByClassName(web, "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"));
+            ToReturn.Price = System.Convert.ToSingle(ToReturn.GetDataByClassName(web, "Fw(b) Fz(36px) Mb(-4px) D(ib)"));
 
             
             //Get day change
