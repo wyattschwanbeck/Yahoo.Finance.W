@@ -244,7 +244,7 @@ namespace Yahoo.Finance
             //Get volume
             try
             {
-                ToReturn.Volume = System.Convert.ToInt64(ToReturn.GetDataByDataTestName(web, "TD_VOLUME-value").Replace(",",""));
+                ToReturn.Volume = System.Convert.ToInt64(ToReturn.GetDataByDataFieldName(web, "regularMarketVolume").Replace(",",""));
             }
             catch
             {
@@ -327,7 +327,12 @@ namespace Yahoo.Finance
             //Get earnings date
             try
             {
-                ToReturn.EarningsDate = DateTime.Parse(ToReturn.GetDataByDataTestName(web, "EARNINGS_DATE-value"));
+                loc1 = web.IndexOf("EARNINGS_DATE-value");
+                loc1 = web.IndexOf("<span", loc1 + 1);
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string datestr = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                ToReturn.EarningsDate = DateTime.Parse(datestr);
             }
             catch
             {
@@ -365,14 +370,19 @@ namespace Yahoo.Finance
 
             
 
-            //Get ex-dividend date
+            //Get ex dividend
             try
             {
-                ToReturn.ExDividendDate = DateTime.Parse(ToReturn.GetDataByDataTestName(web, "EX_DIVIDEND_DATE-value"));
+                loc1 = web.IndexOf("EX_DIVIDEND_DATE-value");
+                loc1 = web.IndexOf("<span", loc1 + 1);
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string datestr = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                ToReturn.ExDividendDate = DateTime.Parse(datestr);
             }
             catch
             {
-                ToReturn.ExDividendDate = null;
+                ToReturn.ExDividendDate= null;
             }
 
             //Get one year targets
@@ -417,6 +427,19 @@ namespace Yahoo.Finance
 
             string middle = web_data.Substring(loc1 + 1, loc2 - loc1 - 1);
             return middle;
+        }
+
+        private string GetDataByDataFieldName(string web_data, string data_field)
+        {
+            int loc1 = web_data.IndexOf("data-field=\"" + data_field + "\"");
+            if (loc1 == -1)
+            {
+                throw new Exception("Unable to find data field '" + data_field + "' in web content");
+            }
+            loc1 = web_data.IndexOf(">", loc1 + 1);
+            int loc2 = web_data.IndexOf("<", loc1 + 1);
+            string ToReturn = web_data.Substring(loc1 + 1, loc2 - loc1 - 1);
+            return ToReturn;
         }
 
     }
