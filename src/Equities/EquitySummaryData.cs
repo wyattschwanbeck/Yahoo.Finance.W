@@ -79,23 +79,39 @@ namespace Yahoo.Finance
             ToReturn.Price = System.Convert.ToSingle(ToReturn.GetDataByClassName(web, "Fw(b) Fz(36px) Mb(-4px) D(ib)"));
 
             
-            //Get day change
+            //Get day dollar change
             try
             {
-                loc1 = web.IndexOf("Trsdu(0.3s) Fw(500) Pstart(10px) Fz(24px)");
+                loc1 = web.IndexOf("qsp-price-change");
+                loc1 = web.IndexOf("<span class", loc1 + 1);
                 loc1 = web.IndexOf(">", loc1 + 1);
                 loc2 = web.IndexOf("<", loc1 + 1);
                 string dayc = web.Substring(loc1 + 1, loc2 - loc1 - 1);
-                splitter.Clear();
-                splitter.Add(" ");
-                string[] partsdc = dayc.Split(splitter.ToArray(), StringSplitOptions.None);
-                ToReturn.DollarChange = System.Convert.ToSingle(partsdc[0].Replace("+", ""));
-                ToReturn.PercentChange = System.Convert.ToSingle(partsdc[1].Replace("+", "").Replace("(","").Replace(")", "").Replace("%","").Trim())/100;
+                ToReturn.DollarChange = System.Convert.ToSingle(dayc.Replace("+", ""));
             }
             catch
             {
                 ToReturn.DollarChange = 0;
-                ToReturn.PercentChange = 0;
+            }
+
+            //Get day percent change
+            try
+            {
+                loc1 = web.LastIndexOf("data-field=\"regularMarketChangePercent\" data-trend=\"txt\"");
+                loc1 = web.IndexOf("<span class", loc1 + 1);
+                loc1 = web.IndexOf(">", loc1 + 1);
+                loc2 = web.IndexOf("<", loc1 + 1);
+                string dayc = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                dayc = dayc.Replace("+","");
+                dayc = dayc.Replace("(", "");
+                dayc = dayc.Replace(")", "");
+                dayc = dayc.Replace("%", "");
+                float val = System.Convert.ToSingle(dayc);
+                ToReturn.PercentChange = val / 100f;
+            }
+            catch
+            {
+                ToReturn.PercentChange = 0f;
             }
             
             //Get previous close
