@@ -412,7 +412,6 @@ namespace Yahoo.Finance
                 throw new Exception("Unable to find data with data test name '" + web_data + "' inside web data.");
             }
 
-            loc1 = web_data.IndexOf("<span", loc1 + 1);
             loc1 = web_data.IndexOf(">", loc1 + 1);
             loc2 = web_data.IndexOf("<", loc1 + 1);
 
