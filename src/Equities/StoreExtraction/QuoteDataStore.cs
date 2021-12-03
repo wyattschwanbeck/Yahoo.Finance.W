@@ -341,7 +341,12 @@ namespace Yahoo.Finance
 
             //Get the JSON body
             string FullJson = web_page_html.Substring(loc1 + 1, loc2 - loc1 - 1);
-            JObject Master = JObject.Parse(FullJson);
+            return ExtractQuoteDataStoresFromRootJson(FullJson);
+        }
+
+        public static QuoteDataStore[] ExtractQuoteDataStoresFromRootJson(string root_json)
+        {
+            JObject Master = JObject.Parse(root_json);
 
             //Step down to the quoteData
             JObject jo_context = JObject.Parse(Master.Property("context").Value.ToString());
@@ -361,7 +366,7 @@ namespace Yahoo.Finance
                 ToReturn.Add(new QuoteDataStore(prop.Name, thisObj));
             }
 
-            return ToReturn.ToArray();           
+            return ToReturn.ToArray();      
         }
 
         #endregion
