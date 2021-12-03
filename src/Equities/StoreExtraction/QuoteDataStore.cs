@@ -121,6 +121,38 @@ namespace Yahoo.Finance
             }
         }
 
+        public string ShortName
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("shortName").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string LongName
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("longName").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+
+
         private string GetRawValueFromChildObject(string PropertyName)
         {
             JProperty propObj = QuoteObj.Property(PropertyName);
