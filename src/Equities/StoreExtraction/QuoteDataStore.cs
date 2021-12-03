@@ -151,7 +151,155 @@ namespace Yahoo.Finance
             }
         }
 
+        public float? DayChange
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketChange"));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
 
+        public float? PreviousClose
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketPreviousClose"));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string ExchangeTimezone
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("exchangeTimezoneShortName").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? DayLow
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketDayLow"));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string Currency
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("currency").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Price
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketPrice"));
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Volume
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketVolume"));
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? MarketCap
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("marketCap"));
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string ExchangeName
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("fullExchangeName").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string QuoteType
+        {
+            get
+            {
+                try
+                {
+                    return QuoteObj.Property("quoteType").Value.ToString();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
 
         private string GetRawValueFromChildObject(string PropertyName)
         {
