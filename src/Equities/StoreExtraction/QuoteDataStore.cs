@@ -88,6 +88,24 @@ namespace Yahoo.Finance
             }
         }
 
+        public float? SharesOutstanding
+        {
+            get
+            {
+                try
+                {
+                    JObject obj = JObject.Parse(QuoteObj.Property("sharesOutstanding").Value.ToString());
+                    JProperty prop = obj.Property("raw");
+                    float ToReturn = Convert.ToSingle(prop.Value.ToString());
+                    return ToReturn;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
         #endregion
 
 
