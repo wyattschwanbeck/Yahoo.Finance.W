@@ -44,6 +44,49 @@ namespace Yahoo.Finance
             }
         }
 
+        public float? YearRangeLow
+        {
+            get
+            {
+                try
+                {
+                    JObject obj = JObject.Parse(QuoteObj.Property("fiftyTwoWeekRange").Value.ToString());
+                    JProperty prop = obj.Property("raw");
+                    string propVal = prop.Value.ToString();
+                    int loc1 = propVal.IndexOf(" ");
+                    int loc2 = propVal.IndexOf(" ", loc1 + 1);
+                    float Low = Convert.ToSingle(propVal.Substring(0, loc1 - 1));
+                    float High = Convert.ToSingle(propVal.Substring(loc2 + 1));
+                    return Low;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? YearRangeHigh
+        {
+            get
+            {
+                try
+                {
+                    JObject obj = JObject.Parse(QuoteObj.Property("fiftyTwoWeekRange").Value.ToString());
+                    JProperty prop = obj.Property("raw");
+                    string propVal = prop.Value.ToString();
+                    int loc1 = propVal.IndexOf(" ");
+                    int loc2 = propVal.IndexOf(" ", loc1 + 1);
+                    float Low = Convert.ToSingle(propVal.Substring(0, loc1 - 1));
+                    float High = Convert.ToSingle(propVal.Substring(loc2 + 1));
+                    return High;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
 
         #endregion
 
