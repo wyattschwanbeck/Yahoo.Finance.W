@@ -17,6 +17,37 @@ namespace Yahoo.Finance
             QuoteObj = obj;
         }
 
+        public string Symbol
+        {
+            get
+            {
+                return _Symbol;
+            }
+        }
+
+        #region "Extracted properties"
+
+        public float? Open
+        {
+            get
+            {
+                try
+                {
+                    JObject obj = JObject.Parse(QuoteObj.Property("regularMarketOpen").Value.ToString());
+                    float val = Convert.ToSingle(obj.Property("raw").Value.ToString());
+                    return val;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+
+        #endregion
+
+
         #region "static constructors"
 
         public static QuoteDataStore[] ExtractQuoteDataStoresFromWebPage(string web_page_html)
