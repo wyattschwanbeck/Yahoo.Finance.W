@@ -106,6 +106,41 @@ namespace Yahoo.Finance
             }
         }
 
+        public float? DayHigh
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToSingle(GetRawValueFromChildObject("regularMarketDayHigh"));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        private string GetRawValueFromChildObject(string PropertyName)
+        {
+            JProperty propObj = QuoteObj.Property(PropertyName);
+            if (propObj == null)
+            {
+                throw new Exception("Unable to find property '" + PropertyName + "' in quote data.");
+            }
+            if (propObj.Type != JTokenType.Property)
+            {
+                throw new Exception("Property '" + PropertyName + "' was not a child object.");
+            }
+            JObject ob = JObject.Parse(propObj.Value.ToString());
+            JProperty propRaw = ob.Property("raw");
+            if (propRaw == null)
+            {
+                throw new Exception("Property labeled 'raw' does not exist in the specified child object.");
+            }
+            return propRaw.Value.ToString();
+        }
+
         #endregion
 
 
