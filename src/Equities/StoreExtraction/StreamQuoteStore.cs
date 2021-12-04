@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace Yahoo.Finance
 {
-    public class QuoteDataStore
+    public class StreamQuoteStore
     {
         private string _Symbol;
         private JObject QuoteObj;
 
-        public QuoteDataStore(string symbol, JObject obj)
+        public StreamQuoteStore(string symbol, JObject obj)
         {
             _Symbol = symbol;
             QuoteObj = obj;
@@ -326,7 +326,7 @@ namespace Yahoo.Finance
 
         #region "static constructors"
 
-        public static QuoteDataStore[] ExtractQuoteDataStoresFromWebPage(string web_page_html)
+        public static StreamQuoteStore[] ExtractStreamQuoteStoresFromWebPage(string web_page_html)
         {
             int loc1 = web_page_html.IndexOf("root.App.main =");
             if (loc1 == -1)
@@ -341,10 +341,10 @@ namespace Yahoo.Finance
 
             //Get the JSON body
             string FullJson = web_page_html.Substring(loc1 + 1, loc2 - loc1 - 1);
-            return ExtractQuoteDataStoresFromRootJson(FullJson);
+            return ExtractStreamQuoteStoresFromRootJson(FullJson);
         }
 
-        public static QuoteDataStore[] ExtractQuoteDataStoresFromRootJson(string root_json)
+        public static StreamQuoteStore[] ExtractStreamQuoteStoresFromRootJson(string root_json)
         {
             JObject Master = JObject.Parse(root_json);
 
@@ -359,11 +359,11 @@ namespace Yahoo.Finance
             IEnumerable<JProperty> QuoteProps = jo_quoteData.Properties();
 
             //Create each
-            List<QuoteDataStore> ToReturn = new List<QuoteDataStore>();
+            List<StreamQuoteStore> ToReturn = new List<StreamQuoteStore>();
             foreach (JProperty prop in QuoteProps)
             {
                 JObject thisObj = JObject.Parse(prop.Value.ToString());
-                ToReturn.Add(new QuoteDataStore(prop.Name, thisObj));
+                ToReturn.Add(new StreamQuoteStore(prop.Name, thisObj));
             }
 
             return ToReturn.ToArray();      
