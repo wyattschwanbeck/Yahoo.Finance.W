@@ -104,7 +104,7 @@ namespace Yahoo.Finance
             }
         }
 
-        public int? AverageVolume
+        public int? AverageVolume90Day
         {
             get
             {
@@ -291,6 +291,231 @@ namespace Yahoo.Finance
                 try
                 {
                     return QuoteSummaryStoreObj.SelectToken("price.regularMarketDayLow.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? BidPrice
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.bid.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int? BidQuantity
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.bidSize.raw").Value<int>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? AskPrice
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.ask.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? AskQuantity
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.askSize.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int? AverageVolume10Day
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.averageDailyVolume10Day.raw").Value<int>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? YearLow
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.fiftyTwoWeekLow.raw").Value<float>();
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? YearHigh
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.fiftyTwoWeekHigh.raw").Value<float>();
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Beta
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.beta.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? PriceEarningsRatio
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.trailingPE.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? EarningsPerShare
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.trailingEPS.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public DateTime? EarningsDate
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("earnings.earningsChart.earningsDate[0].fmt").Value<string>());
+                }   
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ForwardDividend
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.dividendRate.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ForwardDividendYield
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.dividendYield.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public DateTime? ExDividendDate
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("summaryDetail.exDividendDate.fmt").Value<string>());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? YearTargetEstimate
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.targetMeanPrice.raw").Value<float>();
                 }
                 catch
                 {
