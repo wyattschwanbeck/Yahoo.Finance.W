@@ -284,6 +284,21 @@ namespace Yahoo.Finance
             }
         }
 
+        public float? DayLow
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("price.regularMarketDayLow.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
         #endregion
 
 
