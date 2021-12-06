@@ -3,6 +3,8 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Yahoo.Finance
 {
@@ -1184,6 +1186,16 @@ namespace Yahoo.Finance
         {
             string json = StoreExtractionToolkit.ExtractRootJsonFromWebpage(webpage_html);
             return QuoteSummaryStore.CreateFromRootJson(json);
+        }
+
+        public static async Task<QuoteSummaryStore> DownloadAsync(string symbol)
+        {
+            //Get from yahoo finance
+            string url = "https://finance.yahoo.com/quote/" + symbol;
+            HttpClient cl = new HttpClient();
+            HttpResponseMessage hrm = await cl.GetAsync(url);
+            string web = await hrm.Content.ReadAsStringAsync();
+            return CreateFromWebpage(web);
         }
 
         #endregion
