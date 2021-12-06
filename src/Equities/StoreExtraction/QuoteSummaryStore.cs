@@ -442,7 +442,7 @@ namespace Yahoo.Finance
             {
                 try
                 {
-                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.trailingEPS.raw").Value<float>();
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.trailingEps.raw").Value<float>();
                 }
                 catch
                 {
