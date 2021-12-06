@@ -526,7 +526,639 @@ namespace Yahoo.Finance
 
         #endregion
 
+        #region "Statistics"
 
+        public DateTime? LastFiscalYearEnd
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.lastFiscalYearEnd.fmt").Value<string>());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public DateTime? LastFiscalQuarterEnd
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.mostRecentQuarter.fmt").Value<string>());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ProfitMargin
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.profitMargins.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? OperatingMargin
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.operatingMargins.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ReturnOnAssets
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.returnOnAssets.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ReturnOnEquity
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.returnOnEquity.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Revenue
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.totalRevenue.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? RevenuePerShare
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.revenuePerShare.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? QuarterlyRevenueGrowth
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.revenueGrowth.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? GrossProfit
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.grossProfits.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? EDBITDA
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.ebitda.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? NetIncomeAvailableToCommon
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.netIncomeToCommon.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? QuarterlyEarningsGrowth
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.earningsQuarterlyGrowth.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Cash
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.totalCash.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? CashPerShare
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.totalCashPerShare.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Debt
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.totalDebt.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? DebtToEquityRatio
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.debtToEquity.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? CurrentRatio
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.currentRatio.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? BookValuePerShare
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.bookValue.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? OperatingCashFlow
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.operatingCashflow.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? LeveredFreeCashFlow
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("financialData.freeCashflow.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? YearChangePercent
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.52WeekChange.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? SP500YearChangePercent
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.SandP52WeekChange.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? MovingAverage50Day
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.fiftyDayAverage.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? MovingAverage200Day
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.twoHundredDayAverage.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? SharesOutstanding
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.sharesOutstanding.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? Float
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.floatShares.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? PercentHeldByInsiders
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.heldPercentInsiders.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? PercentHeldByInstitutions
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.heldPercentInstitutions.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? SharesShort
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.sharesShort.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ShortRatio
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.shortRatio.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ShortPercentOfFloat
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.shortPercentOfFloat.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ShortPercentOfSharesOutstanding
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.sharesPercentSharesOut.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ForwardAnnualDividend
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.dividendRate.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? ForwardAnnualDividendYield
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.dividendYield.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? TrailingAnnualDividend
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.trailingAnnualDividendRate.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? TrailingAnnualDividendYield
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.trailingAnnualDividendYield.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? FiveYearAverageDividendYield
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.fiveYearAvgDividendYield.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public float? DividendPayoutRatio
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.payoutRatio.raw").Value<float>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public DateTime? DividendDate
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("calendarEvents.dividendDate.fmt").Value<string>());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string LastSplitFactor
+        {
+            get
+            {
+                try
+                {
+                    return QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.lastSplitFactor").Value<string>();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public DateTime? LastSplitDate
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.Parse(QuoteSummaryStoreObj.SelectToken("defaultKeyStatistics.lastSplitDate.fmt").Value<string>());
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        #endregion
 
 
 
