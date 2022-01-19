@@ -346,13 +346,13 @@ namespace Yahoo.Finance
             }
         }
 
-        public float? AskQuantity
+        public int? AskQuantity
         {
             get
             {
                 try
                 {
-                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.askSize.raw").Value<float>();
+                    return QuoteSummaryStoreObj.SelectToken("summaryDetail.askSize.raw").Value<int>();
                 }
                 catch
                 {
