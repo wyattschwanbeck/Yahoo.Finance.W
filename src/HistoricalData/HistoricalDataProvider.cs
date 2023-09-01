@@ -44,23 +44,25 @@ namespace Yahoo.Finance
                     HttpClient hc = new HttpClient();
                     HttpResponseMessage rm = await hc.GetAsync("https://finance.yahoo.com/quote/" + symbol);
                     string web = await rm.Content.ReadAsStringAsync();
-                    int loc1 = web.IndexOf("}}}}},\"CrumbStore\":{\"crumb\":");
-                    if (loc1 == -1)
-                    {
-                        throw new Exception("Unable to verify stock '" + symbol + "'.");
-                    }
-                    loc1 = web.IndexOf("crumb", loc1 + 1);
-                    loc1 = web.IndexOf(":", loc1 + 1);
-                    loc1 = web.IndexOf("\"", loc1 + 1);
-                    int loc2 = web.IndexOf("\"", loc1 + 1);
-                    string crumb = web.Substring(loc1 + 1, loc2 - loc1 - 1);
+                    //NEED TO HAVE A BETTER WAY TO VERIFY STOCK SYMBOL, THIS NO LONGER WORKS. 
+                    //COMMENTING OUT SINCE THE CODE TO DOWNLOAD WORKS WITH EXISTING SYMBOLS 
+                    //int loc1 = web.IndexOf("crumb\":");
+                    //if (loc1 == -1)
+                    //{
+                    //    throw new Exception("Unable to verify stock '" + symbol + "'.");
+                    //}
+                    //int loc1 = web.IndexOf("crumb", loc1 + 1);
+                    //loc1 = web.IndexOf(":", loc1 + 1);
+                    //loc1 = web.IndexOf("\"", loc1 + 1);
+                    //int loc2 = web.IndexOf("\"", loc1 + 1);
+                    //string crumb = web.Substring(loc1 + 1, loc2 - loc1 - 1);
 
                     //Get the unix times
                     string Unix1 = UnixToolkit.GetUnixTime(start).ToString();
                     string Unix2 = UnixToolkit.GetUnixTime(end).ToString();
 
                     //Get the info
-                    string urlfordata = "https://query1.finance.yahoo.com/v7/finance/download/" + symbol + "?period1=" + Unix1 + "&period2=" + Unix2 + "&interval=1d&events=history&crumb=" + crumb;
+                    string urlfordata = "https://query1.finance.yahoo.com/v7/finance/download/" + symbol + "?period1=" + Unix1 + "&period2=" + Unix2 + "&interval=1d&events=history";
                     HttpResponseMessage fr = await hc.GetAsync(urlfordata);
                     string resptext = await fr.Content.ReadAsStringAsync();
 
